@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">dictionary</string>
+    <!--  図鑑詳細  -->
+    <string name="detail_title">詳細のタイトル</string>
+    <string name="detail_text">詳細の説明テキスト</string>
+    <string name="like">いいね</string>
 </resources>
