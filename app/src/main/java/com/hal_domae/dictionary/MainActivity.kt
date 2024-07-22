@@ -1,5 +1,6 @@
 package com.hal_domae.dictionary
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.SimpleAdapter
@@ -56,9 +57,15 @@ class MainActivity : AppCompatActivity() {
         // positionでどこが押されたかわかる
         // Toastは画面下部に表示される簡易的なメッセージ
         // Toastの引数は1:コンテキスト、2:表示する文字列、3:表示時間(Toast.LENGTH_SHORTは短い)
-        binding.list.setOnItemClickListener { parent, view, position, id ->
+        binding.list.setOnItemClickListener { _, _, position, _ ->
             //Toast.makeText(this@MainActivity, "{data[position]を選択しました}", Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"${listData[position]["name"]}を選択しました", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this,"${listData[position]["name"]}を選択しました", Toast.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this@MainActivity, DetailActivity::class.java).apply {
+                    putExtra("POSITION",position)
+                }
+
+            )
         }
     }
 }
