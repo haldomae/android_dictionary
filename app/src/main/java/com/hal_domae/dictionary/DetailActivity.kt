@@ -1,5 +1,6 @@
 package com.hal_domae.dictionary
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,5 +32,16 @@ class DetailActivity : AppCompatActivity() {
         binding.detailTitle.text = data["name"].toString()
         binding.detailText.text = data["explain"].toString()
 
+        binding.likeButton.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_SUBJECT, "【${data["name"].toString()}】の図鑑")
+                putExtra(Intent.EXTRA_TEXT, "モンスターの名前 : ${data["name"].toString()}\nモンスターの詳細\n${data["explain"].toString()}")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
     }
 }
